@@ -27,6 +27,8 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'user.User'
+
 
 # Application definition
 
@@ -37,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+    'user',
+    'task'
 ]
 
 MIDDLEWARE = [
