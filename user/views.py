@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate
 
 
 
@@ -13,12 +14,26 @@ from .models import User
 
 
 class LoginView(View):
+
     def post(self, request):
-        pass 
+        if not request.user.is_authenticated:
+            email = request.POST.get("email")
+            password = request.POST.get("password")
+            user = authenticate(email= email,password = password)
+
+            if user is not None:  
+                login(request,user)
+                return redirect("task:task_list")
+            else:
+                messages.add_message(request, messages.INFO, "User Not Found")
+                return redirect("user:login")
+        else:
+            return redirect("task:task_list")
 
     def get(self, request):
         return render(request, 'auth/login.html')
     
+
 
 
 
@@ -46,7 +61,7 @@ class RegisterView(View):
                     user.save()
                     return redirect('user:login')
         else:
-            return redirect('user:register')
+            return redirect('task:task_list')
 
     def get(self, request):
         return render(request, 'auth/register.html')
