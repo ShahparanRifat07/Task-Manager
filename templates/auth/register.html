@@ -1,0 +1,34 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<h2>Register your account</h2>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<hr>
+<form class="ui form" action="{% url 'user:register' %}" method="POST">
+    {% csrf_token %}
+    <div class="field">
+        <label>First Name</label>
+        <input type="text" name="first_name" placeholder="Jhon" required>
+    </div>
+    <div class="field">
+        <label>Last Name</label>
+        <input type="text" name="last_name" placeholder="Snow" required>
+    </div>
+    <div class="field">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="example@gmail.com" required>
+    </div>
+    <div class="field">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+    </div>
+    
+    <button class="ui button" type="submit">Register</button>
+</form>
+{% endblock content %}

@@ -137,4 +137,7 @@ STATIC_ROOT = "static_root"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+
 
