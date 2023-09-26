@@ -18,7 +18,7 @@ class Task(models.Model):
     due_date = models.DateField()
     priority = models.CharField(max_length=1,choices=PriorityChoices.choices)
     complete = models.BooleanField(default=False)
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 
 

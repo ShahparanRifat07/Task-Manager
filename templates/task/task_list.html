@@ -1,4 +1,58 @@
 {% extends 'home.html' %}
 {% block content %}
-<h1>Task List</h1>
+<form class="ui form" method="GET" action="{% url 'task:task_list' %}">
+    <div class="five fields">
+        <div class="field">
+            {{ form.title__icontains.label_tag }}
+            {{ form.title__icontains }}
+        </div>
+        <div class="field">
+            {{ form.due_date.label_tag }}
+            {{ form.due_date }}
+        </div>
+        <div class="field">
+            {{ form.priority.label_tag }}
+            {{ form.priority }}
+        </div>
+        <div class="field">
+            {{ form.complete.label_tag }}
+            {{ form.complete }}
+        </div>
+        <div class="field">
+            {{ form.created_at.label_tag }}
+            {{ form.created_at }}
+        </div>
+    </div>
+    <button class="ui button" type="submit">Search</button>
+</form>
+
+
+<hr>
+
+<h2>Task List</h2>
+
+<table class="ui celled table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Complete</th>
+            <th>Created at</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for task in tasks %}
+        <tr>
+            <td><a href="">{{task.title}}</a></td>
+            <td>{{task.due_date}}</td>
+            <td>{{task.priority}}</td>
+            <td>{{task.complete}}</td>
+            <td>{{task.created_at}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
 {% endblock content %}
