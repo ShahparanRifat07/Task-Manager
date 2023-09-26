@@ -62,7 +62,6 @@ class TaskCreateView(LoginRequiredMixin, View):
 
 
 class TaskUpdateView(LoginRequiredMixin, View):
-
     @method_decorator(user_is_task_owner)
     def post(self,request,pk):
         task = get_object_or_404(Task, pk=pk)
@@ -109,8 +108,8 @@ class TaskDeleteView(LoginRequiredMixin, View):
         return render(request, 'task/task_delete.html',context)
 
 
-class TaskImageCreateView(LoginRequiredMixin, View):
 
+class TaskImageCreateView(LoginRequiredMixin, View):
     @method_decorator(user_is_task_owner)
     def post(self,request,pk):
         task = get_object_or_404(Task, pk=pk)
@@ -120,8 +119,8 @@ class TaskImageCreateView(LoginRequiredMixin, View):
         return redirect('task:task_update', pk=task.pk)
 
 
-class TaskImageDeleteView(LoginRequiredMixin, View):
 
+class TaskImageDeleteView(LoginRequiredMixin, View):
     @method_decorator(user_is_task_owner)
     def post(self,request,pk,image_pk):
         task = get_object_or_404(Task, pk=pk)

@@ -1,5 +1,6 @@
 {% extends 'home.html' %}
 {% block content %}
+<br>
 <form class="ui form" method="GET" action="{% url 'task:task_list' %}">
     <div class="five fields">
         <div class="field">
@@ -23,7 +24,7 @@
             {{ form.created_at }}
         </div>
     </div>
-    <button class="ui button" type="submit">Search</button>
+    <button class="ui button " type="submit">Search</button>
 </form>
 
 
@@ -47,8 +48,23 @@
         <tr>
             <td><a href="{% url 'task:task_detail' task.pk %}">{{task.title}}</a></td>
             <td>{{task.due_date}}</td>
-            <td>{{task.priority}}</td>
-            <td>{{task.complete}}</td>
+            <td>
+                
+                {% if task.priority == "L" %}
+                Low
+                {% elif task.priority == "M" %}
+                Medium
+                {% elif task.priority == "H" %}
+                High   
+                {% endif %}
+            </td>
+            <td>
+                {% if task.complete == True %}
+                Yes
+                {% else %}
+                No
+                {% endif %}
+            </td>
             <td>{{task.created_at}}</td>
         </tr>
         {% endfor %}

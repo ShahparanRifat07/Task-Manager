@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.views import LogoutView
 
 
 
@@ -71,3 +72,7 @@ class RegisterView(View):
             return render(request, 'auth/register.html')
         else:
             return redirect('task:task_list')
+        
+
+class UserLogoutView(LogoutView):
+    next_page = '/'

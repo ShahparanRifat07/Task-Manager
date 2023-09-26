@@ -1,14 +1,18 @@
 <div class="ui secondary menu">
-  <a href="" class="active item"> Home </a>
-  <a href="{% url 'task:task_create' %}" class="item"> Create Task </a>
+  <a href="{% url 'task:task_list' %}" class="{% if request.path == '/' %}active item{% else %}item{% endif %}"> Home </a>
+  {% if user.is_authenticated %}
+  <a href="{% url 'task:task_create' %}" class="{% if request.path == '/task/create/' %}active item{% else %}item{% endif %}"> Create Task </a>
+  {% endif %}
   <div class="right menu">
-    <!-- <div class="item">
-        <div class="ui icon input">
-          <input type="text" placeholder="Search...">
-          <i class="search link icon"></i>
-        </div>
-      </div> -->
+    {% if user.is_authenticated %}
+    <p class="ui item" >{{user.first_name}} {{user.last_name}}</p>
+    <form class="ui item" action="{% url 'user:logout' %}" method="Post">
+      {% csrf_token %}
+      <button class="ui negative button" type="submit">Logout</button>
+    </form>
+    {% else %}
     <a href="{% url 'user:register' %}" class="ui item"> Register </a>
     <a href="{% url 'user:login' %}" class="ui item"> Login </a>
+    {% endif %}
   </div>
 </div>
