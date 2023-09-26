@@ -40,7 +40,7 @@
         </tr>
         <tr class="center aligned">
             <td><b>Action</b></td>
-            <td><a class="ui blue button" href="">Update</a> <a  class="negative ui button" href="">Delete</a></td>
+            <td><a class="ui blue button" href="{% url 'task:task_update' task.pk %}">Update</a> <a  class="negative ui button" href="{% url 'task:task_delete' task.pk %}">Delete</a></td>
         </tr>
 
 

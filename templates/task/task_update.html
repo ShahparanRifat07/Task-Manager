@@ -1,0 +1,76 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<h2>Update your task</h2>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<hr>
+<form class="ui form" action="{% url 'task:task_update' task.pk %}" method="POST" >
+    {% csrf_token %}
+    <div class="field">
+        <label>Title</label>
+        {{ form.title }}
+    </div>
+
+    <div class="field">
+        <label>Description</label>
+        {{ form.description }}
+    </div>
+
+    <div class="field">
+        <label>Due Date</label>
+        {{ form.due_date }}
+    </div>
+
+    <div class="field">
+        <label>Priority</label>
+        {{ form.priority }}
+    </div>
+
+    <div class="field">
+        <label>Complete</label>
+        {{ form.complete }}
+    </div>
+    <button class="ui button" type="submit">Update Task</button>
+</form>
+
+<br>
+<br>
+
+
+<h2>Task Images</h2>
+<hr>
+<form class="ui form" action="{% url 'task:task_image_add' task.pk %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="field">
+        <label for="file" class="ui icon button">
+            <i class="file icon"></i>
+            Select Images</label>
+        <input name="images" type="file" multiple id="file" accept="image/*">
+    </div>
+    <button class="ui button" type="submit">Upload Images</button>
+</form>
+<br>
+
+<div class="ui four cards">
+
+    {% for image in images %}
+    <div class="red card" style="margin-bottom: 50px;">
+        <div class="image" style="width: 100% !important; height: 100% !important; object-fit: cover !important;">
+            <img src="{{ image.image.url }}" style="width: 100% !important; height: 100% !important; object-fit: cover !important;">
+        </div>
+        <div class="content center aligned">
+            <form method="post" action="{% url 'task:task_image_delete' task.pk image.pk %}">
+                {% csrf_token %}
+                <button class="ui red button" type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
