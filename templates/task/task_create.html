@@ -1,0 +1,49 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<h2>Create your task</h2>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<hr>
+<form class="ui form" action="{% url 'task:task_create' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="field">
+        <label>Title</label>
+        {{ form.title }}
+    </div>
+
+    <div class="field">
+        <label>Description</label>
+        {{ form.description }}
+    </div>
+
+    <div class="field">
+        <label>Due Date</label>
+        {{ form.due_date }}
+    </div>
+
+    <div class="field">
+        <label>Priority</label>
+        {{ form.priority }}
+    </div>
+
+    <div class="field">
+        <label>Complete</label>
+        {{ form.complete }}
+    </div>
+
+    <div class="field">
+        <label for="file" class="ui icon button">
+            <i class="file icon"></i>
+            Select Images</label>
+        <input name="images" type="file" multiple id="file" >
+    </div>
+    
+    <button class="ui button" type="submit">Create Task</button>
+</form>
+{% endblock content %}

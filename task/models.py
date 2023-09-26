@@ -30,4 +30,7 @@ class Image(models.Model):
     task = models.ForeignKey(Task,on_delete=models.CASCADE)
     image = models.ImageField(null=True,blank=True,upload_to=generate_unique_filename)
 
+    def __str__(self):
+        return self.task.title
+
 
