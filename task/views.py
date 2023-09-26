@@ -2,11 +2,13 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 from .models import Task,Image
 from .forms import TaskForm
 from .filters import TaskFilter
+from .decorators import user_is_task_owner
 
 
 class TaskListView(LoginRequiredMixin,View):
@@ -22,6 +24,7 @@ class TaskListView(LoginRequiredMixin,View):
 
 class TaskDetailView(LoginRequiredMixin,View):
 
+    @method_decorator(user_is_task_owner)
     def get(self,request,pk):
         task = get_object_or_404(Task, pk=pk)
         images = Image.objects.filter(task = task)
@@ -60,6 +63,7 @@ class TaskCreateView(LoginRequiredMixin, View):
 
 class TaskUpdateView(LoginRequiredMixin, View):
 
+    @method_decorator(user_is_task_owner)
     def post(self,request,pk):
         task = get_object_or_404(Task, pk=pk)
         task_form = TaskForm(request.POST, instance=task)
@@ -70,6 +74,7 @@ class TaskUpdateView(LoginRequiredMixin, View):
             messages.add_message(request, messages.INFO, "Form is not valid")
             return redirect('task:task_update', pk=task.pk)
 
+    @method_decorator(user_is_task_owner)
     def get(self,request,pk):
         task = get_object_or_404(Task, pk=pk)
         task_form = TaskForm(instance=task)
@@ -84,6 +89,7 @@ class TaskUpdateView(LoginRequiredMixin, View):
 
 
 class TaskDeleteView(LoginRequiredMixin, View):
+    @method_decorator(user_is_task_owner)
     def post(self,request,pk):
         task = get_object_or_404(Task, pk=pk)
         images = Image.objects.filter(task=task)
@@ -94,6 +100,7 @@ class TaskDeleteView(LoginRequiredMixin, View):
         task.delete()
         return redirect('task:task_list')
 
+    @method_decorator(user_is_task_owner)
     def get(self,request,pk):
         task = get_object_or_404(Task, pk=pk)
         context = {
@@ -103,6 +110,8 @@ class TaskDeleteView(LoginRequiredMixin, View):
 
 
 class TaskImageCreateView(LoginRequiredMixin, View):
+
+    @method_decorator(user_is_task_owner)
     def post(self,request,pk):
         task = get_object_or_404(Task, pk=pk)
         images = request.FILES.getlist('images')
@@ -112,6 +121,8 @@ class TaskImageCreateView(LoginRequiredMixin, View):
 
 
 class TaskImageDeleteView(LoginRequiredMixin, View):
+
+    @method_decorator(user_is_task_owner)
     def post(self,request,pk,image_pk):
         task = get_object_or_404(Task, pk=pk)
         image = get_object_or_404(Image, pk=image_pk)
