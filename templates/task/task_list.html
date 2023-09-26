@@ -45,7 +45,7 @@
 
         {% for task in tasks %}
         <tr>
-            <td><a href="">{{task.title}}</a></td>
+            <td><a href="{% url 'task:task_detail' task.pk %}">{{task.title}}</a></td>
             <td>{{task.due_date}}</td>
             <td>{{task.priority}}</td>
             <td>{{task.complete}}</td>

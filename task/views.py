@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -18,6 +18,18 @@ class TaskListView(LoginRequiredMixin,View):
             "tasks" : task_filter.qs,
         }
         return render(request, 'task/task_list.html',context)
+
+
+class TaskDetailView(LoginRequiredMixin,View):
+
+    def get(self,request,pk):
+        task = get_object_or_404(Task, pk=pk)
+        images = Image.objects.filter(task = task)
+        context ={
+            "task" : task,
+            "images" : images,
+        }
+        return render(request, 'task/task_detail.html',context)
 
 
 

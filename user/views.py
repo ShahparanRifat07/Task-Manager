@@ -31,8 +31,11 @@ class LoginView(View):
             return redirect("task:task_list")
 
     def get(self, request):
-        return render(request, 'auth/login.html')
-    
+        if not request.user.is_authenticated:
+            return render(request, 'auth/login.html')
+        else:
+            return redirect('task:task_list')
+
 
 
 
@@ -64,4 +67,7 @@ class RegisterView(View):
             return redirect('task:task_list')
 
     def get(self, request):
-        return render(request, 'auth/register.html')
+        if not request.user.is_authenticated:
+            return render(request, 'auth/register.html')
+        else:
+            return redirect('task:task_list')
