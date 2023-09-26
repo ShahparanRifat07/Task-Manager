@@ -33,7 +33,6 @@ class TaskDetailView(LoginRequiredMixin,View):
 
 
 
-
 class TaskCreateView(LoginRequiredMixin, View):
 
     def post(self,request):
@@ -82,27 +81,26 @@ class TaskUpdateView(LoginRequiredMixin, View):
         }
         return render(request, 'task/task_update.html',context)
 
+
+
 class TaskDeleteView(LoginRequiredMixin, View):
     def post(self,request,pk):
         task = get_object_or_404(Task, pk=pk)
-        task_form = TaskForm(request.POST, instance=task)
-        if task_form.is_valid():
-            task_form.save()
-            return redirect('task:task_detail', pk=task.pk)
-        else:
-            messages.add_message(request, messages.INFO, "Form is not valid")
-            return redirect('task:task_update', pk=task.pk)
+        images = Image.objects.filter(task=task)
+        if images:
+            for image in images:
+                image.image.delete()
+                image.delete()
+        task.delete()
+        return redirect('task:task_list')
 
     def get(self,request,pk):
         task = get_object_or_404(Task, pk=pk)
-        task_form = TaskForm(instance=task)
-        images = Image.objects.filter(task=task)
         context = {
-            "form" : task_form,
             "task" : task,
-            "images" : images,
         }
-        return render(request, 'task/task_update.html',context)
+        return render(request, 'task/task_delete.html',context)
+
 
 class TaskImageCreateView(LoginRequiredMixin, View):
     def post(self,request,pk):
@@ -111,6 +109,7 @@ class TaskImageCreateView(LoginRequiredMixin, View):
         for image in images:
             Image.objects.create(task = task, image = image)
         return redirect('task:task_update', pk=task.pk)
+
 
 class TaskImageDeleteView(LoginRequiredMixin, View):
     def post(self,request,pk,image_pk):

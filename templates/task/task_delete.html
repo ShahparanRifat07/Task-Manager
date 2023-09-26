@@ -3,10 +3,13 @@
 {% block content %}
 <h2>Task Delete</h2>
 
-<p>Are you sure? You want to delete Task-5</p>
-<form method="post" action="{% url 'task:task_delete' task.pk %}">
-    {% csrf_token %}
-    <button class="ui red button" type="submit">Delete</button>
-</form>
-<a class="ui red button" href="">Cancel</a>
+<p>Are you sure? You want to delete <a href="{% url 'task:task_detail' task.pk %}">{{task.title}}</a></p>
+<div style="display: flex;">
+    <form method="post" action="{% url 'task:task_delete' task.pk %}">
+        {% csrf_token %}
+        <button class="ui red button" type="submit">Delete</button>
+    </form>
+    <a class="ui blue button" href="{% url 'task:task_detail' task.pk %}">Cancel</a>
+</div>
+
 {% endblock content %}

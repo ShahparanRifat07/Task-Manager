@@ -4,9 +4,9 @@ from .views import (
    TaskListView,
    TaskDetailView,
    TaskUpdateView,
+   TaskDeleteView,
    TaskImageCreateView,
    TaskImageDeleteView,
-   TaskDeleteView,
 )
 
 app_name ='task'
