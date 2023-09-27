@@ -1,9 +1,8 @@
 from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.views import APIView
 from rest_framework import generics
-from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
@@ -16,6 +15,9 @@ class TaskListAPIView(generics.ListAPIView):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
+    filter_backends = [DjangoFilterBackend,filters.SearchFilter]
+    filterset_fields = ['due_date','priority','complete']
+    search_fields = ['title',]
 
     def get_queryset(self):
         user = self.request.user
