@@ -7,8 +7,8 @@ from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
-from .serializers import TaskSerializer
-from task.models import Task
+from .serializers import TaskSerializer, ImageSerializer
+from task.models import Task,Image
 from .permissions import TaskUserOrReadOnly
 
 
@@ -51,3 +51,27 @@ class TaskDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
 
 
+
+class ImageListAPIView(generics.ListAPIView):
+    serializer_class = ImageSerializer
+    permission_classes = [IsAuthenticated, TaskUserOrReadOnly]
+    authentication_classes = [JWTAuthentication]
+
+    def get_queryset(self):
+        task_pk = self.kwargs['pk']
+        return Image.objects.filter(task_id=task_pk)
+
+
+
+class ImageCreateAPIView(generics.CreateAPIView):
+    serializer_class = ImageSerializer
+
+    def perform_create(self, serializer):
+        task_id = self.kwargs.get('pk')
+        task = Task.objects.get(pk=task_id)
+        serializer.save(task=task)
+
+
+class ImageDeleteAPIView(generics.DestroyAPIView):
+    queryset = Image.objects.all()
+    lookup_url_kwarg = 'image_pk'
