@@ -30,8 +30,21 @@ class TaskCreateAPIView(generics.CreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+class TaskDetailAPIView(generics.RetrieveAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated, TaskUserOrReadOnly]
+    authentication_classes = [JWTAuthentication]
+
 
 class TaskUpdateAPIView(generics.RetrieveUpdateAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated, TaskUserOrReadOnly]
+    authentication_classes = [JWTAuthentication]
+
+
+class TaskDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated, TaskUserOrReadOnly]
