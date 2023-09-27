@@ -4,9 +4,10 @@ from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
-from .serializers import TaskSerializer, ImageSerializer
+from .serializers import TaskSerializer, ImageSerializer, ImageListSerializer
 from task.models import Task,Image
 from .permissions import TaskUserOrReadOnly
 
@@ -66,14 +67,18 @@ class ImageListAPIView(generics.ListAPIView):
 
 
 class ImageCreateAPIView(generics.CreateAPIView):
-    serializer_class = ImageSerializer
+    queryset = Image.objects.all()
+    serializer_class = ImageListSerializer
+    permission_classes = [IsAuthenticated, TaskUserOrReadOnly]
+    authentication_classes = [JWTAuthentication]
+    parser_class = [MultiPartParser, FormParser]
 
     def perform_create(self, serializer):
-        task_id = self.kwargs.get('pk')
-        task = Task.objects.get(pk=task_id)
-        serializer.save(task=task)
+        serializer.save()
 
 
 class ImageDeleteAPIView(generics.DestroyAPIView):
     queryset = Image.objects.all()
+    permission_classes = [IsAuthenticated, TaskUserOrReadOnly]
+    authentication_classes = [JWTAuthentication]
     lookup_url_kwarg = 'image_pk'
