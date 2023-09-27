@@ -1,0 +1,392 @@
+[
+    {
+        "model": "user.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$5WTMbxDdHzW3psG0uhlLKB$FDtbAlFQoLmU8loW7Czrpn8cH+APPP7UtxevvSli8dI=",
+            "last_login": "2023-09-27T07:34:25.388Z",
+            "is_superuser": true,
+            "username": "rifat",
+            "first_name": "Shah Paran",
+            "last_name": "Rifat",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-09-25T21:42:27Z",
+            "email": "shahparanrifat@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$ARnyQAFC10rf4ZNCuNuEtj$d4nFMxYYP52nFWBvBd26JGXxLvUkF94+Cs3cy/bcJWs=",
+            "last_login": "2023-09-27T15:23:26.681Z",
+            "is_superuser": false,
+            "username": "shahranrifat115207@gmail.com",
+            "first_name": "Sohag",
+            "last_name": "Nakib",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-09-25T23:29:06.050Z",
+            "email": "shahranrifat115207@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$CIaLIsHKHxFvh8N4Nh9xsk$3j856HEWiaNl81EuAHg1o07mcjPzZfUYItybWjVKAmU=",
+            "last_login": "2023-09-27T15:50:03.197Z",
+            "is_superuser": false,
+            "username": "shahranrifat9@gmail.com",
+            "first_name": "Mahabub",
+            "last_name": "Rahman",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-09-27T15:48:51.837Z",
+            "email": "shahranrifat9@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$cB3y5u4D6R9uCjpsEIszBR$f6JPE1VyQnyDjIBYKN2oULQq5sjOlubM9wEx8xmWnZI=",
+            "last_login": "2023-09-27T15:52:57.488Z",
+            "is_superuser": false,
+            "username": "shahranrifat1@gmail.com",
+            "first_name": "Rafiuddin",
+            "last_name": "Alvi",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-09-27T15:49:29.238Z",
+            "email": "shahranrifat1@gmail.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "task.task",
+        "pk": 15,
+        "fields": {
+            "user": 2,
+            "title": "Prepare Weekly Presentation",
+            "description": "Compile data, create slides, and rehearse for the Monday meeting.",
+            "due_date": "2023-09-29",
+            "priority": "M",
+            "complete": false,
+            "created_at": "2023-09-27",
+            "updated_at": "2023-09-27T15:45:52.366Z"
+        }
+    },
+    {
+        "model": "task.task",
+        "pk": 16,
+        "fields": {
+            "user": 2,
+            "title": "Grocery Shopping",
+            "description": "Buy fruits, vegetables, milk, and eggs for the week",
+            "due_date": "2023-09-28",
+            "priority": "L",
+            "complete": false,
+            "created_at": "2023-09-27",
+            "updated_at": "2023-09-27T15:46:41.622Z"
+        }
+    },
+    {
+        "model": "task.task",
+        "pk": 17,
+        "fields": {
+            "user": 2,
+            "title": "Write Blog Post",
+            "description": "Research and write a 1000-word blog post on the latest industry trends.",
+            "due_date": "2023-10-05",
+            "priority": "H",
+            "complete": false,
+            "created_at": "2023-09-27",
+            "updated_at": "2023-09-27T15:47:19.195Z"
+        }
+    },
+    {
+        "model": "task.task",
+        "pk": 18,
+        "fields": {
+            "user": 5,
+            "title": "Fix Leaky Faucet",
+            "description": "Call a plumber or attempt to fix the kitchen faucet yourself",
+            "due_date": "2023-09-29",
+            "priority": "M",
+            "complete": false,
+            "created_at": "2023-09-27",
+            "updated_at": "2023-09-27T15:50:40.460Z"
+        }
+    },
+    {
+        "model": "task.task",
+        "pk": 19,
+        "fields": {
+            "user": 5,
+            "title": "Plan Family Vacation",
+            "description": "Research destinations, book flights, and find accommodation for the summer vacation.",
+            "due_date": "2023-11-16",
+            "priority": "H",
+            "complete": false,
+            "created_at": "2023-09-27",
+            "updated_at": "2023-09-27T15:51:55.412Z"
+        }
+    },
+    {
+        "model": "task.task",
+        "pk": 20,
+        "fields": {
+            "user": 5,
+            "title": "Study for Exam",
+            "description": "Review chapters 5 to 10 for the upcoming biology exam",
+            "due_date": "2023-09-29",
+            "priority": "H",
+            "complete": false,
+            "created_at": "2023-09-27",
+            "updated_at": "2023-09-27T15:52:33.614Z"
+        }
+    },
+    {
+        "model": "task.task",
+        "pk": 21,
+        "fields": {
+            "user": 6,
+            "title": "Attend Team Meeting",
+            "description": "Join the weekly team meeting to discuss project updates.",
+            "due_date": "2023-12-14",
+            "priority": "L",
+            "complete": false,
+            "created_at": "2023-09-27",
+            "updated_at": "2023-09-27T15:53:34.504Z"
+        }
+    },
+    {
+        "model": "task.task",
+        "pk": 22,
+        "fields": {
+            "user": 6,
+            "title": "Submit Monthly Expenses",
+            "description": "Compile receipts and submit the monthly expense report to accounting.",
+            "due_date": "2023-09-28",
+            "priority": "L",
+            "complete": false,
+            "created_at": "2023-09-27",
+            "updated_at": "2023-09-27T15:54:03.341Z"
+        }
+    },
+    {
+        "model": "task.task",
+        "pk": 23,
+        "fields": {
+            "user": 6,
+            "title": "Home Workout",
+            "description": "Do a 30-minute HIIT workout at home to stay fit.",
+            "due_date": "2023-09-29",
+            "priority": "L",
+            "complete": true,
+            "created_at": "2023-09-27",
+            "updated_at": "2023-09-27T15:54:36.553Z"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 41,
+        "fields": {
+            "task": 15,
+            "image": "683471ba33864a909069dce779bd9041.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 42,
+        "fields": {
+            "task": 15,
+            "image": "e9834f778705465880a212e6e7b1703a.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 43,
+        "fields": {
+            "task": 15,
+            "image": "8213ddc98dca47398fdf4288a9bff70c.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 44,
+        "fields": {
+            "task": 16,
+            "image": "ab156a2fea214621b3f0158f3f08f544.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 45,
+        "fields": {
+            "task": 16,
+            "image": "b1db1639f812497d96ea981d8359c685.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 46,
+        "fields": {
+            "task": 17,
+            "image": "fc8ca603ccec4c4ba57f95a199cfcd94.webp"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 47,
+        "fields": {
+            "task": 17,
+            "image": "cb357d3fe8fb42fbbf18f278323fdaae.webp"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 48,
+        "fields": {
+            "task": 18,
+            "image": "6ac8f8a3ac2048658209c932c1c6f9b4.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 49,
+        "fields": {
+            "task": 18,
+            "image": "ae403e965e8749eabe7883ed2c41f611.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 50,
+        "fields": {
+            "task": 18,
+            "image": "f51e34faf5024c4a9ad0354d9b0ae522.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 51,
+        "fields": {
+            "task": 18,
+            "image": "5ca20db135624a3885e12ea7db134715.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 52,
+        "fields": {
+            "task": 19,
+            "image": "c3735f289d8d48f3834dc907abca38d9.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 53,
+        "fields": {
+            "task": 19,
+            "image": "fbb28e8ba7504252b8c414fe150a6f8f.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 54,
+        "fields": {
+            "task": 19,
+            "image": "3cc3c88ccfce456387f187f97efd03ff.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 55,
+        "fields": {
+            "task": 20,
+            "image": "a1e77f46dd3d4c4193be7c25a9d1f195.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 56,
+        "fields": {
+            "task": 20,
+            "image": "6d5b3ba14d4c439daff8b7cff918f11f.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 57,
+        "fields": {
+            "task": 20,
+            "image": "2316d0d2ff5e469bb822a5b729b0bbd6.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 58,
+        "fields": {
+            "task": 21,
+            "image": "32f96e43a2074ca8a966650d4e79caff.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 59,
+        "fields": {
+            "task": 22,
+            "image": "eda318f14fb646c98a4cee923fb30ce3.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 60,
+        "fields": {
+            "task": 22,
+            "image": "533e88d348d44eedad775cca3c799ac7.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 61,
+        "fields": {
+            "task": 22,
+            "image": "40942de0303e45419ce8aa3ead40f458.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 62,
+        "fields": {
+            "task": 23,
+            "image": "a3450fd2fc8a4082b8af9efefa9b90b5.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 63,
+        "fields": {
+            "task": 23,
+            "image": "f6e333e5d47b4a35949a929401f0b70e.jpg"
+        }
+    },
+    {
+        "model": "task.image",
+        "pk": 64,
+        "fields": {
+            "task": 23,
+            "image": "d91778d4415c4613ac33356779ca2f20.jpg"
+        }
+    }
+]
