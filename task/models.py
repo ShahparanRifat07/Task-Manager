@@ -18,7 +18,7 @@ class Task(models.Model):
     due_date = models.DateField()
     priority = models.CharField(max_length=1,choices=PriorityChoices.choices)
     complete = models.BooleanField(default=False)
-    created_at = models.DateField(default=timezone.now)
+    created_at = models.DateField(default=timezone.now().date())
     updated_at = models.DateTimeField(auto_now=True)
 
 
@@ -27,7 +27,7 @@ class Task(models.Model):
 
 
 class Image(models.Model):
-    task = models.ForeignKey(Task,on_delete=models.CASCADE)
+    task = models.ForeignKey(Task,on_delete=models.CASCADE,related_name="images")
     image = models.ImageField(null=True,blank=True,upload_to=generate_unique_filename)
 
     def __str__(self):

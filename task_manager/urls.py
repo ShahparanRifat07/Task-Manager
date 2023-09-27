@@ -23,7 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('task.urls',namespace='task')),
     path('auth/',include('user.urls',namespace='user')),
+
+    #API ROUTES
     path('api/',include('task.api.urls')),
+    path('api/auth/',include('user.api.urls')),
 ]
 
 if settings.DEBUG:
